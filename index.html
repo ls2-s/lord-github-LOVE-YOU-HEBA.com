@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هدية الحب 💋</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://litter.catbox.moe/4kixoofyur5nmlia.jpg') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 40px 10px;
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            width: 85%;
+            max-width: 380px;
+            z-index: 10;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        h1 { color: #ffd700; font-size: 1.8rem; margin-bottom: 5px; }
+        p { font-size: 0.95rem; line-height: 1.6; }
+        
+        .counter-box {
+            background: #ffd700;
+            color: #000;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .btn-play {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            transition: 0.3s;
+        }
+
+        /* تنسيق الكلمات المتساقطة */
+        .heart {
+            position: fixed;
+            top: -50px;
+            font-weight: bold;
+            color: #ff3366;
+            text-shadow: 2px 2px 10px rgba(255, 51, 102, 0.5);
+            pointer-events: none;
+            z-index: 9999;
+            user-select: none;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(110vh) rotate(25deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>ةآجـ❤ـمـ❤ـلَ صـ❤ـدفـ❤ـهّ ❤️</h1>
+        <p>بحبك بطريقة تخلي قلبي يهدى أول ما أشوف اسمك 🫶
+وجودك في حياتي مش بس سعادة… ده أمان وونس وضحكة من غير سبب ❤️
+لو الدنيا كلها وقفت ضدي، يكفيني إنك تكوني جنبي 🌍✨
+
+إنتِ مش بس حبيبتي… إنتِ الحاجة الحلوة اللي ربنا رزقني بيها 💖
+وكل يوم بحبك أكتر من اللي قبله… وكأني لسه بعرفك أول مرة 😍
+
+لو كان ليا أمنية واحدة بس… هختارك إنتِ كل مرة، وكل عمر 💍💕✨</p>
+
+        <div class="counter-box">
+            <div id="timer">بيحمل ي حته 💋...</div>
+            <small>من يوم ما نورتي حياتي 🌗</small>
+        </div>
+
+        <button class="btn-play" id="mainBtn" onclick="startSurprise()"> ي حته دوسي هنا وشوفي العظمه 😍🤩</button>
+        
+        <audio id="loveSong" loop>
+            <source src="https://files.catbox.moe/972vev.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        // تاريخ البداية
+        const startDate = new Date("2025-11-30T00:00:00").getTime();
+
+        function updateCounter() {
+            const now = new Date().getTime();
+            const diff = now - startDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("timer").innerHTML = `${days} يوم و ${hours} ساعة و ${minutes} دقيقة`;
+        }
+        setInterval(updateCounter, 1000);
+
+        function startSurprise() {
+            const song = document.getElementById("loveSong");
+            song.play();
+
+            document.getElementById("mainBtn").innerHTML = "بـ❤ـحـ❤ـبـ❤ـكـ❤ـكـ❤ـكـ❤ـ";
+
+            // تشغيل تساقط الكلمات
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                const words = ['بحبك 🤩', 'بحبك 💋'];
+                heart.innerHTML = words[Math.floor(Math.random() * words.length)];
+                
+                heart.style.left = Math.random() * 90 + 'vw'; 
+                heart.style.fontSize = (Math.random() * 10 + 20) + 'px';
+                
+                const duration = Math.random() * 3 + 6; 
+                heart.style.animation = `fall ${duration}s linear forwards`;
+                
+                document.body.appendChild(heart);
+                setTimeout(() => { heart.remove(); }, duration * 1000);
+            }, 600);
+        }
+    </script>
+</body>
+</html>
+
